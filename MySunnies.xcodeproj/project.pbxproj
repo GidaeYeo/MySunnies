@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D213417A1F037C68008BCE70 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21341791F037C68008BCE70 /* Weather.swift */; };
 		D2E1C87B1F035F5D00335FD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E1C87A1F035F5D00335FD2 /* AppDelegate.swift */; };
 		D2E1C87D1F035F5D00335FD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E1C87C1F035F5D00335FD2 /* ViewController.swift */; };
 		D2E1C8801F035F5D00335FD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E1C87E1F035F5D00335FD2 /* Main.storyboard */; };
 		D2E1C8831F035F5D00335FD2 /* MySunnies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2E1C8811F035F5D00335FD2 /* MySunnies.xcdatamodeld */; };
 		D2E1C8851F035F5D00335FD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2E1C8841F035F5D00335FD2 /* Assets.xcassets */; };
 		D2E1C8881F035F5D00335FD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E1C8861F035F5D00335FD2 /* LaunchScreen.storyboard */; };
+		D2E1C8901F03613900335FD2 /* ShowHourlyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E1C88F1F03613900335FD2 /* ShowHourlyTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D21341791F037C68008BCE70 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		D2E1C8771F035F5D00335FD2 /* MySunnies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySunnies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E1C87A1F035F5D00335FD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2E1C87C1F035F5D00335FD2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		D2E1C8841F035F5D00335FD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2E1C8871F035F5D00335FD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2E1C8891F035F5D00335FD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2E1C88F1F03613900335FD2 /* ShowHourlyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowHourlyTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +62,13 @@
 			children = (
 				D2E1C87A1F035F5D00335FD2 /* AppDelegate.swift */,
 				D2E1C87C1F035F5D00335FD2 /* ViewController.swift */,
+				D2E1C88F1F03613900335FD2 /* ShowHourlyTableViewController.swift */,
 				D2E1C87E1F035F5D00335FD2 /* Main.storyboard */,
 				D2E1C8841F035F5D00335FD2 /* Assets.xcassets */,
 				D2E1C8861F035F5D00335FD2 /* LaunchScreen.storyboard */,
 				D2E1C8891F035F5D00335FD2 /* Info.plist */,
 				D2E1C8811F035F5D00335FD2 /* MySunnies.xcdatamodeld */,
+				D21341791F037C68008BCE70 /* Weather.swift */,
 			);
 			path = MySunnies;
 			sourceTree = "<group>";
@@ -141,8 +147,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2E1C87D1F035F5D00335FD2 /* ViewController.swift in Sources */,
+				D2E1C8901F03613900335FD2 /* ShowHourlyTableViewController.swift in Sources */,
 				D2E1C87B1F035F5D00335FD2 /* AppDelegate.swift in Sources */,
 				D2E1C8831F035F5D00335FD2 /* MySunnies.xcdatamodeld in Sources */,
+				D213417A1F037C68008BCE70 /* Weather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +314,7 @@
 				D2E1C88E1F035F5D00335FD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
