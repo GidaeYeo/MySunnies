@@ -14,6 +14,9 @@
 		D24DF8CA1F04AE800007E105 /* JSONDownLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24DF8C91F04AE800007E105 /* JSONDownLoader.swift */; };
 		D24DF8CC1F04B0BB0007E105 /* DarkSkyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24DF8CB1F04B0BB0007E105 /* DarkSkyError.swift */; };
 		D24DF8CE1F04BCA10007E105 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24DF8CD1F04BCA10007E105 /* CurrentWeather.swift */; };
+		D24DF8D11F04C2700007E105 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24DF8D01F04C2700007E105 /* CurrentWeather.swift */; };
+		D24DF8D31F04C5B30007E105 /* CurrentWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24DF8D21F04C5B30007E105 /* CurrentWeatherViewModel.swift */; };
+		D24DF8D51F04C7090007E105 /* WeatherIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24DF8D41F04C7090007E105 /* WeatherIcon.swift */; };
 		D2E1C87B1F035F5D00335FD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E1C87A1F035F5D00335FD2 /* AppDelegate.swift */; };
 		D2E1C87D1F035F5D00335FD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E1C87C1F035F5D00335FD2 /* ViewController.swift */; };
 		D2E1C8801F035F5D00335FD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E1C87E1F035F5D00335FD2 /* Main.storyboard */; };
@@ -31,6 +34,9 @@
 		D24DF8C91F04AE800007E105 /* JSONDownLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDownLoader.swift; sourceTree = "<group>"; };
 		D24DF8CB1F04B0BB0007E105 /* DarkSkyError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkSkyError.swift; sourceTree = "<group>"; };
 		D24DF8CD1F04BCA10007E105 /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
+		D24DF8D01F04C2700007E105 /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentWeather.swift; path = ../CurrentWeather.swift; sourceTree = "<group>"; };
+		D24DF8D21F04C5B30007E105 /* CurrentWeatherViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentWeatherViewModel.swift; path = ../CurrentWeatherViewModel.swift; sourceTree = "<group>"; };
+		D24DF8D41F04C7090007E105 /* WeatherIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherIcon.swift; path = ../WeatherIcon.swift; sourceTree = "<group>"; };
 		D2E1C8771F035F5D00335FD2 /* MySunnies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySunnies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E1C87A1F035F5D00335FD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2E1C87C1F035F5D00335FD2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +97,9 @@
 				D2E1C8861F035F5D00335FD2 /* LaunchScreen.storyboard */,
 				D2E1C8891F035F5D00335FD2 /* Info.plist */,
 				D2E1C8811F035F5D00335FD2 /* MySunnies.xcdatamodeld */,
+				D24DF8D01F04C2700007E105 /* CurrentWeather.swift */,
+				D24DF8D21F04C5B30007E105 /* CurrentWeatherViewModel.swift */,
+				D24DF8D41F04C7090007E105 /* WeatherIcon.swift */,
 				D21341791F037C68008BCE70 /* Weather.swift */,
 				D24DF8C91F04AE800007E105 /* JSONDownLoader.swift */,
 				D24DF8CD1F04BCA10007E105 /* CurrentWeather.swift */,
@@ -174,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D24DF8CA1F04AE800007E105 /* JSONDownLoader.swift in Sources */,
+				D24DF8D11F04C2700007E105 /* CurrentWeather.swift in Sources */,
 				D2E1C87D1F035F5D00335FD2 /* ViewController.swift in Sources */,
 				D24DF8CC1F04B0BB0007E105 /* DarkSkyError.swift in Sources */,
 				D24DF8C81F04AA930007E105 /* WeeklyForecastViewCell.swift in Sources */,
@@ -183,6 +193,8 @@
 				D2E1C8831F035F5D00335FD2 /* MySunnies.xcdatamodeld in Sources */,
 				D24DF8C51F04AA350007E105 /* HourlyForecastViewCell.swift in Sources */,
 				D213417A1F037C68008BCE70 /* Weather.swift in Sources */,
+				D24DF8D31F04C5B30007E105 /* CurrentWeatherViewModel.swift in Sources */,
+				D24DF8D51F04C7090007E105 /* WeatherIcon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
