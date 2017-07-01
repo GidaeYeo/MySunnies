@@ -20,7 +20,7 @@ enum WeatherIcon {
 	case cloudy
 	case partlyCloudyDay
 	case partlyCloudyNight
-	
+	//for additional values, this 'default' enum case will do the job
 	case `default`
 	
 	init(iconString: String) {
@@ -58,7 +58,6 @@ extension WeatherIcon {
 		}
 	}
 }
-
 
 
 

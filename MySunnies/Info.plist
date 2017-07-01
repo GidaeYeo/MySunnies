@@ -4,7 +4,7 @@
 <dict>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>To get the current weather of your region, it should be allowed to use your location information.</string>
-	<key>NSLocationUsageDescription</key>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>To get the current weather of your region, it should be allowed to use your location information.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
