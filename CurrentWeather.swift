@@ -13,8 +13,7 @@ struct CurrentWeather {
 	let humidity: Double
 	let precipitationProbability: Double
 	let summary: String
-	let icon: String
-	
+	let icon: String	
 }
 
 extension CurrentWeather {

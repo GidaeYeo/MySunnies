@@ -12,6 +12,7 @@ class HourlyForecastViewCell: UICollectionViewCell {
 	
 	@IBOutlet weak var hourlyTimeLabel: UILabel!
 	@IBOutlet weak var hourlyImageView: UIImageView!
+	@IBOutlet weak var hourlyTempLabel: UILabel!
 	
 	func getHourlyWeatherIcon(using viewModel: CurrentWeatherViewModel) -> UIImage {
 		let icon = viewModel.icon

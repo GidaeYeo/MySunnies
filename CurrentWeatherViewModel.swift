@@ -26,7 +26,7 @@ struct CurrentWeatherViewModel {
 		let percipPercentValue = Int(model.precipitationProbability * 100)//mutiply 10 to format it in a percentage type
 		self.precipitationProbability = "\(percipPercentValue)%"
 		self.summary = model.summary
-		
+
 		//the icons are string types that return weather images, according to the weather condition.
 		let weatherIcon = WeatherIcon(iconString: model.icon)
 		self.icon = weatherIcon.image
