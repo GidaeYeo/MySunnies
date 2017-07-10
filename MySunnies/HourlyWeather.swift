@@ -10,7 +10,7 @@ import Foundation
 
 struct HourlyWeather {
 	let icon: [String]
-	let time: [Int]
+	let time: [Double]
 	let temperature: [Double]
 }
 
@@ -24,7 +24,7 @@ extension HourlyWeather {
 	init?(json: [String: Array<Any>]) {
 		//json is a dictionary  of arrays which has two keys "icon" and "time", and their values are arrays.
 		self.icon = json["icon"] as! [String]
-		self.time = json["time"] as! [Int]
+		self.time = json["time"] as! [Double]
 		self.temperature = json["temperature"] as! [Double]
 	}
 }

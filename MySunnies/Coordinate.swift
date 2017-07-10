@@ -13,7 +13,6 @@ class Coordinate {
 	
 	let latitude: Double
 	let longitude:  Double
-	
 	init(latitude: Double, longitude: Double) {
 		self.latitude = latitude
 		self.longitude = longitude
@@ -34,7 +33,7 @@ extension Coordinate: CustomStringConvertible {
 					let placeMark = placeMarks?.first!
 					let location = placeMark?.location
 					completion(true, (location?.coordinate)!)
-					print("location: \(String(describing: location?.coordinate.latitude)), \(String(describing: location?.coordinate.longitude))")
+//					print("location: \(String(describing: location?.coordinate.latitude)), \(String(describing: location?.coordinate.longitude))")
 				}
 			}
 		}

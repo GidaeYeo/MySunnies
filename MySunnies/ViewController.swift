@@ -11,71 +11,94 @@ import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource{
 	
-	
-	@IBOutlet var backgroundView: UIView!
+	@IBOutlet weak var hourlyWeatherCollectionView: UICollectionView!
+	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+	@IBOutlet weak var refreshButton: UIButton!
 	@IBOutlet weak var regionLabel: UILabel!
 	@IBOutlet weak var temperatureLabel: UILabel!
 	@IBOutlet weak var forecastLabel: UILabel!
 	@IBOutlet weak var forecastIcon: UIImageView!
+	@IBAction func unwindToView(segue: UIStoryboardSegue){ }
 
 	let client = DarkSkyAPIClient()
 	let locationManager = CLLocationManager()
-	let coordinate = Coordinate(latitude: 37.5665, longitude: 126.9780)
-	let location = "Sydney"
+	var coordinate = Coordinate(latitude: 37.5665, longitude: 126.9780) //default weather
+	let location = "Current Location"
 	var latitude: CLLocationDegrees?
 	var longitude: CLLocationDegrees?
-
+	var regionData: Location!
+	var mainView: UICollectionView?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		getPermission()
 		getCurrentWeather()
-		
-		self.getCoordinate(location: location) { (success, coordinates) in
-			if success {
-				self.latitude = coordinates.latitude
-				self.longitude = coordinates.longitude
-				//print("latitude: \(String(describing: self.latitude)), longitude: \(String(describing: self.longitude))")
-			} else {
-				print("Something went wrong!")
-			}
-		}
-		//print("latitude: \(String(describing: latitude)), longitude: \(String(describing: longitude))")
-		
+		self.hourlyWeatherCollectionView.dataSource = self
+		self.hourlyWeatherCollectionView.delegate = self
 		
 	}
 
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
+	override func viewWillAppear(_ animated: Bool) {
+		if regionData == nil {
+			regionLabel.text = location
+		} else {
+			displayCityName(city: regionData)
+			getCurrentWeather()
+		}
+		
+		hourlyWeatherCollectionView.reloadData()
 	}
 	
 	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+	}
 	
+	//Mark: -Display
+	func displayCityName(city name: Location) {
+		self.regionLabel.text = name.city
+		
+	}
 	func displayWeather (using viewModel: CurrentWeatherViewModel) {
-		print(CurrentWeather.Key.summary)
 		temperatureLabel.text = viewModel.temperature
 		forecastIcon.image = viewModel.icon
 		forecastLabel.text = viewModel.summary
 	}
-	
-	
-	
+
 	func getPermission() {
 		//Get permission from th user to track the user's location
 		locationManager.requestAlwaysAuthorization()
 		locationManager.requestWhenInUseAuthorization()
-		
 		locationManager.delegate = self
 		locationManager.desiredAccuracy = kCLLocationAccuracyBest
 		locationManager.startUpdatingLocation()
 	}
 
+	//Mark: - Get Current Weather
 	func getCurrentWeather()  {
-		client.getCurrentWeather(at: coordinate) { currentWeather, error in
-			if let currentWeather = currentWeather {
-				let viewModel = CurrentWeatherViewModel(model: currentWeather)
+		togggleRefreshAnimation(on: true)
+		
+		if regionData != nil {
+			let longitude = regionData.longitude
+			let latitude = regionData.latitude
+			coordinate = Coordinate(latitude: latitude, longitude: longitude)
+			
+			client.getCurrentWeather(at: coordinate) { currentWeather, error in
+				if let currentWeather = currentWeather {
+					let viewModel = CurrentWeatherViewModel(model: currentWeather)
 					self.displayWeather(using: viewModel)
+					self.togggleRefreshAnimation(on: false)
+				}
 			}
+		} else{
+				client.getCurrentWeather(at: coordinate, completionHandler: { (currentWeather, error) in
+					if let currentWeather = currentWeather {
+						let viewModel = CurrentWeatherViewModel(model: currentWeather)
+						self.displayWeather(using: viewModel)
+						self.togggleRefreshAnimation(on: false)
+						//print("when regionData is nil: \(self.coordinate)")
+					}
+				})
 		}
 	}
 	
@@ -90,13 +113,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 					let placeMark = placeMarks?.first!
 					let location = placeMark?.location
 					completion(true, (location?.coordinate)!)
-					print("location: \(String(describing: location?.coordinate.latitude)), \(String(describing: location?.coordinate.longitude))")
+//					print("location: \(String(describing: location?.coordinate.latitude)), \(String(describing: location?.coordinate.longitude))")
 				}
 			}
 		}
 	}
 
-
+	func togggleRefreshAnimation(on: Bool) {
+		refreshButton.isHidden = on
+		if on {
+			activityIndicator.startAnimating()
+		} else {
+			activityIndicator.stopAnimating()
+		}
+	}
+	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return 10
 	}
@@ -104,38 +135,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "hourly", for: indexPath) as! HourlyForecastViewCell
 		
-		let resize = CGSize(width: 50, height: 50)
 		
+		if regionData != nil {
+			coordinate = Coordinate(latitude: regionData.latitude, longitude: regionData.longitude)
+		}
+
 		client.getHourlyWeather(at: coordinate) { (hourlyWeather, error) in
 			if let hourlyWeather = hourlyWeather {
 				let viewModel = HourlyWeatherViewModel(model: hourlyWeather)
-				//let convertedTimeArray = convertingToString(intTypeArray: viewModel.time)
-				
-				var celsiousTem = [String]()
-				var tempCelsious: Double
-				var temString: String
-				for tem in viewModel.temperature {
-					tempCelsious = (tem-32)*5/9
-					temString = String(format: "%.0f", tempCelsious)
-					celsiousTem.append(temString)
-				}
-				
-				for temp in celsiousTem {
-					cell.hourlyTempLabel.text = temp
-				}
-				//print("viewModel: \(viewModel.temperature)")
-				var timeConverted: String
-				//Display each individual time and image in the reusable cells
-				
-				//print(viewModel.time)
-				for time in viewModel.time {
-					timeConverted = timeStringFromUnixTime(unixTime: time)
-					cell.hourlyTimeLabel.text = timeConverted
-				}
 
+				//Temperature
+				let convertedTemperature = getCelsiousDegree(viewModel.temperature)
+				cell.hourlyTempLabel.text = convertedTemperature[indexPath.row]
+				
+				//Time
+				let convertedTime = timeConverter(viewModel.time)
+				cell.hourlyTimeLabel.text = convertedTime[indexPath.row]
+				
+				//Icon
+				var resizedImages = [UIImage]()
 				for image in viewModel.icon {
-					cell.hourlyImageView.image = image.resizeImage(targetSize: resize)
+					resizedImages.append(image.resizeImage(targetSize: CGSize(width: 50, height: 50)))
 				}
+				cell.hourlyImageView.image = resizedImages[indexPath.row]
 			}
 		}
 		
@@ -144,14 +166,35 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 }
 
 
-//Convert 
-func timeStringFromUnixTime(unixTime: Int) -> String {
-	let date = Date(timeIntervalSince1970: Double(unixTime))
+//functions for conversion
+func timeConverter(_  timeArray: [Double]) -> [String] {
+	var convertedTimeArray = [String]()
+	for time in timeArray {
+		let convertedTime = timeStringFromUnixTime(unixTime: time)
+		convertedTimeArray.append(convertedTime)
+	}
+	return convertedTimeArray
+}
+
+func timeStringFromUnixTime(unixTime: Double) -> String {
+	let date = Date(timeIntervalSince1970: unixTime)
 	let dateFormatter = DateFormatter()
 	dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
 	dateFormatter.locale = Locale.current
-	dateFormatter.dateFormat = "HH"
+	dateFormatter.dateFormat = "hh a"
 	return dateFormatter.string(from: date)
+}
+
+func getCelsiousDegree(_ tempArray: [Double]) -> [String] {
+	var celsiousTem = [String]()
+	var tempCelsious: Double
+	var temString: String
+	for tem in tempArray {
+		tempCelsious = (tem-32)*5/9
+		temString = String(format: "%.0f", tempCelsious)
+		celsiousTem.append(temString)
+	}
+	return celsiousTem
 }
 
 func convertingToString(intTypeArray: [Int]) -> [String] {
@@ -163,12 +206,10 @@ func convertingToString(intTypeArray: [Int]) -> [String] {
 }
 
 
-
 extension UIImage {
 	func resizeImage (targetSize: CGSize) -> UIImage {
 	let size = self.size
-	//if I put 100 and 150
-	//to maintain the same ratio as original
+
 	let widthRatio = targetSize.width / self.size.width // 100/500 = 0.2
 	let heightRatio = targetSize.height / self.size.height// 150/600 = 0.25
 	

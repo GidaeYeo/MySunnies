@@ -15,7 +15,7 @@ struct RegionViewModel {
 }
 
 extension RegionViewModel {
-	init(viewModel: Region) {
+	init(viewModel: Location) {
 		self.city = viewModel.city
 		self.state = viewModel.state
 		self.country = viewModel.country

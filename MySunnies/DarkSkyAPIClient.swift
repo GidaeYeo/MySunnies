@@ -12,9 +12,8 @@ class DarkSkyAPIClient {
 	
 	fileprivate let darkSkyApiKey = "c4bb77c4cc1c434b1459eb3ee4883f65"
 	lazy var baseUrl: URL = {
-		return URL(string: "https://api.darksky.net/forecast/\(self.darkSkyApiKey)/")!
+		return URL(string: "https://api.darksky.net/forecast/\(self.darkSkyApiKey)/?exclude=currently,minutely,hourly,alerts,flags&units=si&lang=pl")!
 	}()
-	
 	
 	let downloader = JSONDownloader.Downloader1()
 	typealias CurrentWeatherCompletionHandler = (CurrentWeather?, DarkSkyError?) -> Void
@@ -72,12 +71,12 @@ class DarkSkyAPIClient {
 				let hourlyData = json["hourly"] as? [String: AnyObject]
 				//print("hourlyData: \(hourlyData)")
 				let hourlyDetail = hourlyData?["data"] as? [[String: AnyObject]]
-				var timeArray = [Int]()
+				var timeArray = [Double]()
 				var iconArray = [String]()
 				var temperatureArray = [Double]()
 				for detail in hourlyDetail! {
 					iconArray.append(detail["icon"] as! String)
-					timeArray.append(detail["time"] as! Int)
+					timeArray.append(detail["time"] as! Double)
 					temperatureArray.append(detail["temperature"] as! Double)
 				}
 				

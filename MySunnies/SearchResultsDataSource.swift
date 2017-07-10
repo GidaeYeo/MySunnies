@@ -31,7 +31,7 @@ class SearchResultsDataSource: NSObject, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath)
 		let region = data[indexPath.row]
-		cell.textLabel?.text = region.city
+		cell.textLabel?.text = region.name
 		return cell
 	}
 	

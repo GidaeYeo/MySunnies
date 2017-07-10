@@ -11,5 +11,7 @@ import Foundation
 struct Location {
 	let city: String
 	let state: String
-	let Country: String
+	let country: String
+	let longitude: Double
+	let latitude: Double
 }

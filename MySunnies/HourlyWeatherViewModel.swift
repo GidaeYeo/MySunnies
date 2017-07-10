@@ -11,7 +11,7 @@ import UIKit
 
 struct HourlyWeatherViewModel {
 	let icon: [UIImage]
-	let time: [Int]
+	let time: [Double]
 	let temperature: [Double]
 	
 	init(model: HourlyWeather) {

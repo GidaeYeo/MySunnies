@@ -10,10 +10,10 @@ import UIKit
 
 class RegionListDataSource: NSObject, UITableViewDataSource {
 
-	private let region: Region
+	private let locations: [Location]
 	
-	init(region: Region) {
-		self.region = region
+	init(location: [Location]) {
+		self.locations = location
 		super.init()
 	}
 	
@@ -24,17 +24,32 @@ class RegionListDataSource: NSObject, UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 1
+		return locations.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let regionCell = tableView.dequeueReusableCell(withIdentifier: RegionCell.reuseIdentifier, for: indexPath) as! RegionCell
 		
-		let viewModel = RegionViewModel(viewModel: region)
-		regionCell.configure(with: viewModel)
-		regionCell.accessoryType = .disclosureIndicator
+		//print("haha: \(locations)")
+		let location = locations[indexPath.row]
+		let viewModel = RegionViewModel(viewModel: location)
+		
+		regionCell.cityLabel.text = viewModel.city
+		regionCell.stateLabel.text = viewModel.state
+		regionCell.countryLabel.text = viewModel.country
 		return regionCell
 		
+	}
+	
+	func location(at indexPath: IndexPath) -> Location {
+		return locations[indexPath.row]
+	}
+	
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		switch section {
+		case 0: return "Regions"
+		default: return nil
+		}
 	}
 	
 }

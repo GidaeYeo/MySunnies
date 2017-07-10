@@ -14,7 +14,7 @@ class RegionCell: UITableViewCell {
 	@IBOutlet weak var countryLabel: UILabel!
 	@IBOutlet weak var stateLabel: UILabel!
 	@IBOutlet weak var cityLabel: UILabel!
-	static let reuseIdentifier = "regionCell"
+	static let reuseIdentifier = "RegionCell"
 	
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,10 +24,4 @@ class RegionCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
-	func configure(with viewModel: RegionViewModel) {
-		cityLabel.text = viewModel.city
-		stateLabel.text = viewModel.state
-		countryLabel.text = viewModel.country
-	}
 }

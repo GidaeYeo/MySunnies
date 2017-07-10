@@ -49,7 +49,9 @@ class SearchResultsController: UITableViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "showRegion" {
 			if let indexPath = tableView.indexPathForSelectedRow {
-				var region = dataSource.region(at: indexPath)
+				let region = dataSource.region(at: indexPath)
+				region.locations = Stub.locations
+				//print("name: \(Stub.locations.first!)")
 				
 				//array of regions
 				let regionListController = segue.destination as! RegionListController
@@ -62,7 +64,7 @@ class SearchResultsController: UITableViewController {
 
 extension SearchResultsController: UISearchResultsUpdating {
 	func updateSearchResults(for searchController: UISearchController) {
-		dataSource.update(Stub.regions)
+		dataSource.update([Stub.places])
 		tableView.reloadData()
 	}
 }

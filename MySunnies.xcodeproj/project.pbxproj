@@ -33,6 +33,7 @@
 		D2E1C8831F035F5D00335FD2 /* MySunnies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2E1C8811F035F5D00335FD2 /* MySunnies.xcdatamodeld */; };
 		D2E1C8851F035F5D00335FD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2E1C8841F035F5D00335FD2 /* Assets.xcassets */; };
 		D2E1C8881F035F5D00335FD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E1C8861F035F5D00335FD2 /* LaunchScreen.storyboard */; };
+		D2E9E7EE1F13028E0016C776 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E9E7ED1F13028E0016C776 /* Forecast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		D2E1C8841F035F5D00335FD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2E1C8871F035F5D00335FD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2E1C8891F035F5D00335FD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2E9E7ED1F13028E0016C776 /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,15 @@
 			name = "View Model";
 			sourceTree = "<group>";
 		};
+		D24395D21F0F402B00F6A5DA /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				D24DF8D61F05109C0007E105 /* Coordinate.swift */,
+				D2B08F701F0C8749000A0A52 /* MVVC */,
+			);
+			name = Location;
+			sourceTree = "<group>";
+		};
 		D2AB661D1F07584100EF48E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +117,7 @@
 		D2AB664F1F07F9AE00EF48E3 /* HourlyWeather */ = {
 			isa = PBXGroup;
 			children = (
+				D2AB66201F077CAC00EF48E3 /* HourlyForecastViewCell.swift */,
 				D2AB66501F07F9C700EF48E3 /* HourlyWeather.swift */,
 				D2AB66521F07FBA900EF48E3 /* HourlyWeatherViewModel.swift */,
 			);
@@ -133,6 +145,7 @@
 		D2B08F681F0C84DF000A0A52 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D2E9E7EC1F1302760016C776 /* Forescast Models */,
 				D2B08F761F0C9C32000A0A52 /* Stub.swift */,
 				D24395A21F0DCA1300F6A5DA /* Region.swift */,
 				D24395A91F0DF70D00F6A5DA /* Location.swift */,
@@ -180,7 +193,6 @@
 		D2E1C8791F035F5D00335FD2 /* MySunnies */ = {
 			isa = PBXGroup;
 			children = (
-				D2B08F701F0C8749000A0A52 /* MVVC */,
 				D2E1C87A1F035F5D00335FD2 /* AppDelegate.swift */,
 				D2E1C87C1F035F5D00335FD2 /* ViewController.swift */,
 				D2E1C87E1F035F5D00335FD2 /* Main.storyboard */,
@@ -188,16 +200,39 @@
 				D2E1C8861F035F5D00335FD2 /* LaunchScreen.storyboard */,
 				D2E1C8891F035F5D00335FD2 /* Info.plist */,
 				D2E1C8811F035F5D00335FD2 /* MySunnies.xcdatamodeld */,
-				D2AB664E1F07F98F00EF48E3 /* CurrentWeather */,
-				D2AB664F1F07F9AE00EF48E3 /* HourlyWeather */,
-				D24DF8D41F04C7090007E105 /* WeatherIcon.swift */,
-				D24DF8D61F05109C0007E105 /* Coordinate.swift */,
+				D2E9E7EB1F121EAD0016C776 /* Weather */,
+				D2E9E7EA1F121E5C0016C776 /* WeatherAdvisor */,
+				D24395D21F0F402B00F6A5DA /* Location */,
 				D213417B1F038AD6008BCE70 /* DarkSkyAPIClient.swift */,
 				D24DF8C91F04AE800007E105 /* JSONDownLoader.swift */,
-				D2AB66201F077CAC00EF48E3 /* HourlyForecastViewCell.swift */,
 				D24DF8CB1F04B0BB0007E105 /* DarkSkyError.swift */,
 			);
 			path = MySunnies;
+			sourceTree = "<group>";
+		};
+		D2E9E7EA1F121E5C0016C776 /* WeatherAdvisor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = WeatherAdvisor;
+			sourceTree = "<group>";
+		};
+		D2E9E7EB1F121EAD0016C776 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				D24DF8D41F04C7090007E105 /* WeatherIcon.swift */,
+				D2AB664E1F07F98F00EF48E3 /* CurrentWeather */,
+				D2AB664F1F07F9AE00EF48E3 /* HourlyWeather */,
+			);
+			name = Weather;
+			sourceTree = "<group>";
+		};
+		D2E9E7EC1F1302760016C776 /* Forescast Models */ = {
+			isa = PBXGroup;
+			children = (
+				D2E9E7ED1F13028E0016C776 /* Forecast.swift */,
+			);
+			name = "Forescast Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +321,7 @@
 				D2B08F641F0C8465000A0A52 /* RegionListController.swift in Sources */,
 				D213417C1F038AD6008BCE70 /* DarkSkyAPIClient.swift in Sources */,
 				D24395AA1F0DF70D00F6A5DA /* Location.swift in Sources */,
+				D2E9E7EE1F13028E0016C776 /* Forecast.swift in Sources */,
 				D2B08F771F0C9C32000A0A52 /* Stub.swift in Sources */,
 				D24DF8D71F05109C0007E105 /* Coordinate.swift in Sources */,
 				D2E1C8831F035F5D00335FD2 /* MySunnies.xcdatamodeld in Sources */,

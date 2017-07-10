@@ -8,9 +8,11 @@
 
 import Foundation
 
-struct Region {	
-	let city: String
-	let state: String
-	let country: String
-	
+class Region {
+	let name: String
+	var locations: [Location]
+	init(name: String, locations: [Location]) {
+		self.name = name
+		self.locations = locations
+	}
 }
