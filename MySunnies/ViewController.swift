@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import GooglePlaces
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource{
 	
@@ -19,11 +20,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	@IBOutlet weak var forecastLabel: UILabel!
 	@IBOutlet weak var forecastIcon: UIImageView!
 	@IBAction func unwindToView(segue: UIStoryboardSegue){ }
+	
+	var placesClient = GMSPlacesClient()
 
 	let client = DarkSkyAPIClient()
 	let locationManager = CLLocationManager()
 	var coordinate = Coordinate(latitude: 37.5665, longitude: 126.9780) //default weather
-	let location = "Current Location"
 	var latitude: CLLocationDegrees?
 	var longitude: CLLocationDegrees?
 	var regionData: Location!
@@ -33,14 +35,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 		super.viewDidLoad()
 		getPermission()
 		getCurrentWeather()
+		getCurrentPlace()
 		self.hourlyWeatherCollectionView.dataSource = self
 		self.hourlyWeatherCollectionView.delegate = self
+		placesClient = GMSPlacesClient.shared()
 		
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
 		if regionData == nil {
-			regionLabel.text = location
+			getCurrentPlace()
 		} else {
 			displayCityName(city: regionData)
 			getCurrentWeather()
@@ -55,9 +59,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	}
 	
 	//Mark: -Display
+	func getCurrentPlace() {
+		placesClient.currentPlace { (placeLikelihoodList, error) -> Void in
+			if let error = error {
+				print("pick plce error: \(error.localizedDescription)")
+			}
+			
+			self.regionLabel.text = "No Current Place"
+			
+			if let placeLikelihoodList = placeLikelihoodList {
+				let place = placeLikelihoodList.likelihoods.first?.place
+				if let place = place {
+					self.regionLabel.text = place.name
+				}
+			}
+		}
+	}
+	
 	func displayCityName(city name: Location) {
 		self.regionLabel.text = name.city
-		
 	}
 	func displayWeather (using viewModel: CurrentWeatherViewModel) {
 		temperatureLabel.text = viewModel.temperature

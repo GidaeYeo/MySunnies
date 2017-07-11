@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		617CE9546BB9C6FC7F149B27 /* Pods_MySunnies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C4317F38EE87B515AB4BDBC /* Pods_MySunnies.framework */; };
 		D213417C1F038AD6008BCE70 /* DarkSkyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D213417B1F038AD6008BCE70 /* DarkSkyAPIClient.swift */; };
 		D24395A31F0DCA1300F6A5DA /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24395A21F0DCA1300F6A5DA /* Region.swift */; };
 		D24395A61F0DCBE700F6A5DA /* RegionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24395A51F0DCBE700F6A5DA /* RegionViewModel.swift */; };
@@ -33,10 +34,12 @@
 		D2E1C8831F035F5D00335FD2 /* MySunnies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2E1C8811F035F5D00335FD2 /* MySunnies.xcdatamodeld */; };
 		D2E1C8851F035F5D00335FD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2E1C8841F035F5D00335FD2 /* Assets.xcassets */; };
 		D2E1C8881F035F5D00335FD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E1C8861F035F5D00335FD2 /* LaunchScreen.storyboard */; };
-		D2E9E7EE1F13028E0016C776 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E9E7ED1F13028E0016C776 /* Forecast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C4317F38EE87B515AB4BDBC /* Pods_MySunnies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MySunnies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		962BAF828CCAB7137CAC3CA9 /* Pods-MySunnies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySunnies.release.xcconfig"; path = "Pods/Target Support Files/Pods-MySunnies/Pods-MySunnies.release.xcconfig"; sourceTree = "<group>"; };
+		C8B3AD6C7A79A35761DA8C39 /* Pods-MySunnies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySunnies.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MySunnies/Pods-MySunnies.debug.xcconfig"; sourceTree = "<group>"; };
 		D213417B1F038AD6008BCE70 /* DarkSkyAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkSkyAPIClient.swift; sourceTree = "<group>"; };
 		D24395A21F0DCA1300F6A5DA /* Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		D24395A51F0DCBE700F6A5DA /* RegionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionViewModel.swift; sourceTree = "<group>"; };
@@ -65,7 +68,6 @@
 		D2E1C8841F035F5D00335FD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2E1C8871F035F5D00335FD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2E1C8891F035F5D00335FD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D2E9E7ED1F13028E0016C776 /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,12 +76,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2AB661F1F07584100EF48E3 /* CoreLocation.framework in Frameworks */,
+				617CE9546BB9C6FC7F149B27 /* Pods_MySunnies.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C78CB5E8F8132DCA81B6299 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C8B3AD6C7A79A35761DA8C39 /* Pods-MySunnies.debug.xcconfig */,
+				962BAF828CCAB7137CAC3CA9 /* Pods-MySunnies.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D24395A41F0DCBD100F6A5DA /* View Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				D2AB661E1F07584100EF48E3 /* CoreLocation.framework */,
+				6C4317F38EE87B515AB4BDBC /* Pods_MySunnies.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -145,7 +158,6 @@
 		D2B08F681F0C84DF000A0A52 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D2E9E7EC1F1302760016C776 /* Forescast Models */,
 				D2B08F761F0C9C32000A0A52 /* Stub.swift */,
 				D24395A21F0DCA1300F6A5DA /* Region.swift */,
 				D24395A91F0DF70D00F6A5DA /* Location.swift */,
@@ -179,6 +191,7 @@
 				D2E1C8791F035F5D00335FD2 /* MySunnies */,
 				D2E1C8781F035F5D00335FD2 /* Products */,
 				D2AB661D1F07584100EF48E3 /* Frameworks */,
+				9C78CB5E8F8132DCA81B6299 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,14 +240,6 @@
 			name = Weather;
 			sourceTree = "<group>";
 		};
-		D2E9E7EC1F1302760016C776 /* Forescast Models */ = {
-			isa = PBXGroup;
-			children = (
-				D2E9E7ED1F13028E0016C776 /* Forecast.swift */,
-			);
-			name = "Forescast Models";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -242,9 +247,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2E1C88C1F035F5D00335FD2 /* Build configuration list for PBXNativeTarget "MySunnies" */;
 			buildPhases = (
+				978C4B3F7D62F72E3213B988 /* [CP] Check Pods Manifest.lock */,
 				D2E1C8731F035F5D00335FD2 /* Sources */,
 				D2E1C8741F035F5D00335FD2 /* Frameworks */,
 				D2E1C8751F035F5D00335FD2 /* Resources */,
+				BDD33B17BA9EB0EE4FAF7778 /* [CP] Embed Pods Frameworks */,
+				767FB94A717665B370EC9022 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -303,6 +311,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		767FB94A717665B370EC9022 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MySunnies/Pods-MySunnies-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		978C4B3F7D62F72E3213B988 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BDD33B17BA9EB0EE4FAF7778 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MySunnies/Pods-MySunnies-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D2E1C8731F035F5D00335FD2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -321,7 +377,6 @@
 				D2B08F641F0C8465000A0A52 /* RegionListController.swift in Sources */,
 				D213417C1F038AD6008BCE70 /* DarkSkyAPIClient.swift in Sources */,
 				D24395AA1F0DF70D00F6A5DA /* Location.swift in Sources */,
-				D2E9E7EE1F13028E0016C776 /* Forecast.swift in Sources */,
 				D2B08F771F0C9C32000A0A52 /* Stub.swift in Sources */,
 				D24DF8D71F05109C0007E105 /* Coordinate.swift in Sources */,
 				D2E1C8831F035F5D00335FD2 /* MySunnies.xcdatamodeld in Sources */,
@@ -451,6 +506,7 @@
 		};
 		D2E1C88D1F035F5D00335FD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8B3AD6C7A79A35761DA8C39 /* Pods-MySunnies.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = TF46W5T2MA;
@@ -464,6 +520,7 @@
 		};
 		D2E1C88E1F035F5D00335FD2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 962BAF828CCAB7137CAC3CA9 /* Pods-MySunnies.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = TF46W5T2MA;
