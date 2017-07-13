@@ -34,8 +34,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		getPermission()
-		getCurrentWeather()
-		getCurrentPlace()
+		getDefaultData()
 		self.hourlyWeatherCollectionView.dataSource = self
 		self.hourlyWeatherCollectionView.delegate = self
 		placesClient = GMSPlacesClient.shared()
@@ -44,7 +43,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 
 	override func viewWillAppear(_ animated: Bool) {
 		if regionData == nil {
-			getCurrentPlace()
+			getDefaultData()
 		} else {
 			displayCityName(city: regionData)
 			getCurrentWeather()
@@ -59,10 +58,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	}
 	
 	//Mark: -Display
-	func getCurrentPlace() {
+	func getDefaultData() {
+		self.togggleRefreshAnimation(on: true)
 		placesClient.currentPlace { (placeLikelihoodList, error) -> Void in
 			if let error = error {
 				print("pick plce error: \(error.localizedDescription)")
+				self.togggleRefreshAnimation(on: false)
 			}
 			
 			self.regionLabel.text = "No Current Place"
@@ -71,6 +72,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 				let place = placeLikelihoodList.likelihoods.first?.place
 				if let place = place {
 					self.regionLabel.text = place.name
+				}
+				
+				if let coordinates = placeLikelihoodList.likelihoods.first?.place.coordinate {
+					let defualtCoordinates = Coordinate(latitude: coordinates.latitude, longitude: coordinates.longitude)
+					print("defualtCoordinates: \(defualtCoordinates)")
+					self.client.getCurrentWeather(at: defualtCoordinates, completionHandler: { (currentWeather, error) in
+						if let currentWeather = currentWeather {
+							let viewModel = CurrentWeatherViewModel(model: currentWeather)
+							print("viewModel: \(viewModel)")
+							self.displayWeather(using: viewModel)
+							self.togggleRefreshAnimation(on: false)
+						}
+
+					})
 				}
 			}
 		}
@@ -111,6 +126,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 				}
 			}
 		} else{
+			
 				client.getCurrentWeather(at: coordinate, completionHandler: { (currentWeather, error) in
 					if let currentWeather = currentWeather {
 						let viewModel = CurrentWeatherViewModel(model: currentWeather)
@@ -155,11 +171,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "hourly", for: indexPath) as! HourlyForecastViewCell
 		
+		var coordinates: Coordinate?
 		
 		if regionData != nil {
-			coordinate = Coordinate(latitude: regionData.latitude, longitude: regionData.longitude)
+			coordinates = Coordinate(latitude: regionData.latitude, longitude: regionData.longitude)
+		} else {
+			placesClient.currentPlace(callback: { (placeLikelihoodList, error) in
+				if let error = error {
+					print("pick plce error: \(error.localizedDescription)")
+				}
+				
+				if let defaultCoordinates = placeLikelihoodList?.likelihoods.first?.place.coordinate {
+					coordinates = Coordinate(latitude: defaultCoordinates.latitude, longitude: defaultCoordinates.longitude)
+					print("coordinates: \(String(describing: coordinates))")
+				}
+			})
 		}
-
+		
 		client.getHourlyWeather(at: coordinate) { (hourlyWeather, error) in
 			if let hourlyWeather = hourlyWeather {
 				let viewModel = HourlyWeatherViewModel(model: hourlyWeather)

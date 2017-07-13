@@ -28,6 +28,7 @@
 		D2B08F6E1F0C868B000A0A52 /* RegionListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B08F6D1F0C868B000A0A52 /* RegionListDataSource.swift */; };
 		D2B08F721F0C8784000A0A52 /* RegionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B08F711F0C8784000A0A52 /* RegionCell.swift */; };
 		D2B08F771F0C9C32000A0A52 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B08F761F0C9C32000A0A52 /* Stub.swift */; };
+		D2C6EC831F165DEC00599B23 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C6EC821F165DEC00599B23 /* LocationViewController.swift */; };
 		D2E1C87B1F035F5D00335FD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E1C87A1F035F5D00335FD2 /* AppDelegate.swift */; };
 		D2E1C87D1F035F5D00335FD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E1C87C1F035F5D00335FD2 /* ViewController.swift */; };
 		D2E1C8801F035F5D00335FD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E1C87E1F035F5D00335FD2 /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		D2B08F6D1F0C868B000A0A52 /* RegionListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionListDataSource.swift; sourceTree = "<group>"; };
 		D2B08F711F0C8784000A0A52 /* RegionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionCell.swift; sourceTree = "<group>"; };
 		D2B08F761F0C9C32000A0A52 /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
+		D2C6EC821F165DEC00599B23 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		D2E1C8771F035F5D00335FD2 /* MySunnies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySunnies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E1C87A1F035F5D00335FD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2E1C87C1F035F5D00335FD2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,16 @@
 				962BAF828CCAB7137CAC3CA9 /* Pods-MySunnies.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D22B96131F15055F0053FC02 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				D24DF8CB1F04B0BB0007E105 /* DarkSkyError.swift */,
+				D213417B1F038AD6008BCE70 /* DarkSkyAPIClient.swift */,
+				D24DF8C91F04AE800007E105 /* JSONDownLoader.swift */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 		D24395A41F0DCBD100F6A5DA /* View Model */ = {
@@ -207,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				D2E1C87A1F035F5D00335FD2 /* AppDelegate.swift */,
+				D2C6EC821F165DEC00599B23 /* LocationViewController.swift */,
 				D2E1C87C1F035F5D00335FD2 /* ViewController.swift */,
 				D2E1C87E1F035F5D00335FD2 /* Main.storyboard */,
 				D2E1C8841F035F5D00335FD2 /* Assets.xcassets */,
@@ -216,9 +229,7 @@
 				D2E9E7EB1F121EAD0016C776 /* Weather */,
 				D2E9E7EA1F121E5C0016C776 /* WeatherAdvisor */,
 				D24395D21F0F402B00F6A5DA /* Location */,
-				D213417B1F038AD6008BCE70 /* DarkSkyAPIClient.swift */,
-				D24DF8C91F04AE800007E105 /* JSONDownLoader.swift */,
-				D24DF8CB1F04B0BB0007E105 /* DarkSkyError.swift */,
+				D22B96131F15055F0053FC02 /* Networking */,
 			);
 			path = MySunnies;
 			sourceTree = "<group>";
@@ -376,6 +387,7 @@
 				D2E1C87B1F035F5D00335FD2 /* AppDelegate.swift in Sources */,
 				D2B08F641F0C8465000A0A52 /* RegionListController.swift in Sources */,
 				D213417C1F038AD6008BCE70 /* DarkSkyAPIClient.swift in Sources */,
+				D2C6EC831F165DEC00599B23 /* LocationViewController.swift in Sources */,
 				D24395AA1F0DF70D00F6A5DA /* Location.swift in Sources */,
 				D2B08F771F0C9C32000A0A52 /* Stub.swift in Sources */,
 				D24DF8D71F05109C0007E105 /* Coordinate.swift in Sources */,

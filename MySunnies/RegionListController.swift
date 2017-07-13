@@ -58,7 +58,7 @@ class RegionListController: UITableViewController {
 				//print("regionBackwords: \(regionBackwords)")
 				let viewController = segue.destination as! ViewController
 				viewController.regionData = regionBackwords
-	
+				
 			}
 		}
 	}
