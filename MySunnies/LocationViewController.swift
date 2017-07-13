@@ -7,14 +7,16 @@
 //
 
 import UIKit
-import GoogleMaps
 import GooglePlaces
+import GoogleMaps
 
 class LocationViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
 	// OUTLETS
 	
 	// VARIABLES
+	var coordinates: CLLocationCoordinate2D?
+	var cityName: String?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -24,7 +26,11 @@ class LocationViewController: UIViewController, GMSAutocompleteViewControllerDel
 	// MARK: GOOGLE AUTO COMPLETE DELEGATE
 	
 	func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-		print("Selected Location: \(place.coordinate)")
+		print("Selected Location: \(place.name), \(place.coordinate)")
+		coordinates = place.coordinate
+		cityName = place.name
+		func prepare(for segue: UIStoryboardSegue, sender: Any?) { }
+		performSegue(withIdentifier: "goBack", sender: self)
 		self.dismiss(animated: true, completion: nil) // dismiss after select place
 	}
 	
@@ -43,5 +49,5 @@ class LocationViewController: UIViewController, GMSAutocompleteViewControllerDel
 	@IBAction func openSearchAddress(_ sender: UIBarButtonItem) {
 		let autoCompleteController = GMSAutocompleteViewController()
 		autoCompleteController.delegate = self
-				self.present(autoCompleteController, animated: true, completion: nil)
+		self.present(autoCompleteController, animated: true, completion: nil)
 	}}

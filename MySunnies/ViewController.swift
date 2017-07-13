@@ -12,6 +12,7 @@ import GooglePlaces
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource{
 	
+	
 	@IBOutlet weak var hourlyWeatherCollectionView: UICollectionView!
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var refreshButton: UIButton!
@@ -19,17 +20,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	@IBOutlet weak var temperatureLabel: UILabel!
 	@IBOutlet weak var forecastLabel: UILabel!
 	@IBOutlet weak var forecastIcon: UIImageView!
-	@IBAction func unwindToView(segue: UIStoryboardSegue){ }
 	
+	//declare an instance of GMSOlacesClient to give a defult location
 	var placesClient = GMSPlacesClient()
 
 	let client = DarkSkyAPIClient()
 	let locationManager = CLLocationManager()
 	var coordinate = Coordinate(latitude: 37.5665, longitude: 126.9780) //default weather
+	var coordinates: CLLocationCoordinate2D?
 	var latitude: CLLocationDegrees?
 	var longitude: CLLocationDegrees?
 	var regionData: Location!
 	var mainView: UICollectionView?
+	var cityName: String?
+	
+	
+	//Receive the coordinates of the user's location from LocationViewController
+	@IBAction func unwindToVC1(segue:UIStoryboardSegue) {
+		if segue.source is LocationViewController{
+			if let dataReceived = segue.source as? LocationViewController {
+				coordinates = dataReceived.coordinates
+				cityName = dataReceived.cityName
+			}
+		}
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -42,10 +56,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
-		if regionData == nil {
+		if coordinates == nil {
 			getDefaultData()
 		} else {
-			displayCityName(city: regionData)
+			regionLabel.text = cityName!
 			getCurrentWeather()
 		}
 		
@@ -58,6 +72,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	}
 	
 	//Mark: -Display
+	
+	//When the app is first launched, this function is going to be called and give the initial coordinates of the user's location
 	func getDefaultData() {
 		self.togggleRefreshAnimation(on: true)
 		placesClient.currentPlace { (placeLikelihoodList, error) -> Void in
@@ -65,7 +81,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 				print("pick plce error: \(error.localizedDescription)")
 				self.togggleRefreshAnimation(on: false)
 			}
-			
 			self.regionLabel.text = "No Current Place"
 			
 			if let placeLikelihoodList = placeLikelihoodList {
@@ -76,15 +91,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 				
 				if let coordinates = placeLikelihoodList.likelihoods.first?.place.coordinate {
 					let defualtCoordinates = Coordinate(latitude: coordinates.latitude, longitude: coordinates.longitude)
-					print("defualtCoordinates: \(defualtCoordinates)")
+					//print("defualtCoordinates: \(defualtCoordinates)")
 					self.client.getCurrentWeather(at: defualtCoordinates, completionHandler: { (currentWeather, error) in
 						if let currentWeather = currentWeather {
 							let viewModel = CurrentWeatherViewModel(model: currentWeather)
-							print("viewModel: \(viewModel)")
+							//print("viewModel: \(viewModel)")
 							self.displayWeather(using: viewModel)
 							self.togggleRefreshAnimation(on: false)
 						}
-
 					})
 				}
 			}
@@ -94,6 +108,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	func displayCityName(city name: Location) {
 		self.regionLabel.text = name.city
 	}
+	
 	func displayWeather (using viewModel: CurrentWeatherViewModel) {
 		temperatureLabel.text = viewModel.temperature
 		forecastIcon.image = viewModel.icon
@@ -112,56 +127,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	//Mark: - Get Current Weather
 	func getCurrentWeather()  {
 		togggleRefreshAnimation(on: true)
-		
-		if regionData != nil {
-			let longitude = regionData.longitude
-			let latitude = regionData.latitude
-			coordinate = Coordinate(latitude: latitude, longitude: longitude)
-			
-			client.getCurrentWeather(at: coordinate) { currentWeather, error in
-				if let currentWeather = currentWeather {
-					let viewModel = CurrentWeatherViewModel(model: currentWeather)
-					self.displayWeather(using: viewModel)
-					self.togggleRefreshAnimation(on: false)
-				}
-			}
-		} else{
-			
-				client.getCurrentWeather(at: coordinate, completionHandler: { (currentWeather, error) in
-					if let currentWeather = currentWeather {
-						let viewModel = CurrentWeatherViewModel(model: currentWeather)
-						self.displayWeather(using: viewModel)
-						self.togggleRefreshAnimation(on: false)
-						//print("when regionData is nil: \(self.coordinate)")
-					}
-				})
-		}
-	}
-	
-	func getCoordinate(location: String, completion: @escaping (Bool,  CLLocationCoordinate2D) -> ()) {
-		let geocoder = CLGeocoder()
-		geocoder.geocodeAddressString(location) { placeMarks, error in
-			
-			if error != nil {
-				print(error?.localizedDescription as Any)
-			} else {
-				if (placeMarks?.count)! > 0 {
-					let placeMark = placeMarks?.first!
-					let location = placeMark?.location
-					completion(true, (location?.coordinate)!)
-//					print("location: \(String(describing: location?.coordinate.latitude)), \(String(describing: location?.coordinate.longitude))")
-				}
-			}
+		//print("currentWeather: \(coordinates)")
+		if coordinates != nil {
+			let coordinatesToUse = Coordinate(latitude: (coordinates?.latitude)!, longitude: (coordinates?.longitude)!)
+			client.getCurrentWeather(at: coordinatesToUse, completionHandler: { (currentWeather, error) in
+				let viewModel = CurrentWeatherViewModel(model: currentWeather!)
+				self.displayWeather(using: viewModel)
+				//print("viewModel: \(viewModel)")
+				self.togggleRefreshAnimation(on: false)
+				
+			})
 		}
 	}
 
 	func togggleRefreshAnimation(on: Bool) {
 		refreshButton.isHidden = on
-		if on {
-			activityIndicator.startAnimating()
-		} else {
-			activityIndicator.stopAnimating()
-		}
+		if on { activityIndicator.startAnimating() } else { activityIndicator.stopAnimating() }
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -171,44 +152,70 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "hourly", for: indexPath) as! HourlyForecastViewCell
 		
-		var coordinates: Coordinate?
+		var coordinatesToUse: Coordinate?
 		
-		if regionData != nil {
-			coordinates = Coordinate(latitude: regionData.latitude, longitude: regionData.longitude)
+		//If the location data is received
+		if coordinates != nil {
+			coordinatesToUse = Coordinate(latitude: (coordinates?.latitude)!, longitude: (coordinates?.longitude)!)
+			//print("coordinatesToUse: \(String(describing: coordinatesToUse))")
+			
+			self.client.getHourlyWeather(at: coordinatesToUse!) { (hourlyWeather, error) in
+				if let hourlyWeather = hourlyWeather {
+					let viewModel = HourlyWeatherViewModel(model: hourlyWeather)
+					
+					//Temperature
+					let convertedTemperature = getCelsiousDegree(viewModel.temperature)
+					cell.hourlyTempLabel.text = convertedTemperature[indexPath.row]
+					
+					//Time
+					let convertedTime = timeConverter(viewModel.time)
+					cell.hourlyTimeLabel.text = convertedTime[indexPath.row]
+					
+					//Icon
+					var resizedImages = [UIImage]()
+					for image in viewModel.icon {
+						resizedImages.append(image.resizeImage(targetSize: CGSize(width: 50, height: 50)))
+					}
+					cell.hourlyImageView.image = resizedImages[indexPath.row]
+				}
+			}
 		} else {
+			//either when the app is firstly launched or no data is received from LocatoniViewController, give the current location by using placesClient
 			placesClient.currentPlace(callback: { (placeLikelihoodList, error) in
+				//print("initinal name: \(String(describing: placeLikelihoodList?.likelihoods.first?.place.name))")
 				if let error = error {
 					print("pick plce error: \(error.localizedDescription)")
 				}
 				
 				if let defaultCoordinates = placeLikelihoodList?.likelihoods.first?.place.coordinate {
-					coordinates = Coordinate(latitude: defaultCoordinates.latitude, longitude: defaultCoordinates.longitude)
-					print("coordinates: \(String(describing: coordinates))")
+					coordinatesToUse = Coordinate(latitude: defaultCoordinates.latitude, longitude: defaultCoordinates.longitude)
+					
+					//print("coordinatesToUse1: \(String(describing: coordinatesToUse))")
+					
+					self.client.getHourlyWeather(at: coordinatesToUse!) { (hourlyWeather, error) in
+						if let hourlyWeather = hourlyWeather {
+							let viewModel = HourlyWeatherViewModel(model: hourlyWeather)
+							
+							//Temperature
+							let convertedTemperature = getCelsiousDegree(viewModel.temperature)
+							cell.hourlyTempLabel.text = convertedTemperature[indexPath.row]
+							
+							//Time
+							let convertedTime = timeConverter(viewModel.time)
+							cell.hourlyTimeLabel.text = convertedTime[indexPath.row]
+							
+							//Icon
+							var resizedImages = [UIImage]()
+							for image in viewModel.icon {
+								resizedImages.append(image.resizeImage(targetSize: CGSize(width: 50, height: 50)))
+							}
+							cell.hourlyImageView.image = resizedImages[indexPath.row]
+						}
+					}
+
 				}
 			})
 		}
-		
-		client.getHourlyWeather(at: coordinate) { (hourlyWeather, error) in
-			if let hourlyWeather = hourlyWeather {
-				let viewModel = HourlyWeatherViewModel(model: hourlyWeather)
-
-				//Temperature
-				let convertedTemperature = getCelsiousDegree(viewModel.temperature)
-				cell.hourlyTempLabel.text = convertedTemperature[indexPath.row]
-				
-				//Time
-				let convertedTime = timeConverter(viewModel.time)
-				cell.hourlyTimeLabel.text = convertedTime[indexPath.row]
-				
-				//Icon
-				var resizedImages = [UIImage]()
-				for image in viewModel.icon {
-					resizedImages.append(image.resizeImage(targetSize: CGSize(width: 50, height: 50)))
-				}
-				cell.hourlyImageView.image = resizedImages[indexPath.row]
-			}
-		}
-		
 		return cell
 	}
 }

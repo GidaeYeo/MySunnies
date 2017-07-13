@@ -40,6 +40,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hourly Weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zhr-Sa-BP7">
                                 <rect key="frame" x="16" y="469" width="201" height="23"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.5" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -56,15 +57,6 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="T8V-I2-iVZ">
                                 <rect key="frame" x="87" y="140" width="20" height="20"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iq8-WJ-eUe">
-                                <rect key="frame" x="247" y="466" width="112" height="29"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.49609375" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <state key="normal" title="Choose Region"/>
-                                <connections>
-                                    <segue destination="OiQ-lu-Egd" kind="show" identifier="ChoooseRegion" id="0Uy-EY-Mzf"/>
-                                </connections>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sdX-DP-FLp">
                                 <rect key="frame" x="-2" y="500" width="375" height="137"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.45959974315068491" colorSpace="calibratedRGB"/>
@@ -142,10 +134,10 @@
                                 </constraints>
                                 <state key="normal" image="refresh"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMw-XM-WAE">
-                                <rect key="frame" x="291" y="231" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMw-XM-WAE">
+                                <rect key="frame" x="255" y="465" width="104" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.63441780821917804" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Choose Region"/>
                                 <connections>
                                     <segue destination="eu7-9m-Lte" kind="show" id="owB-oM-VRX"/>
                                 </connections>
@@ -161,10 +153,10 @@
                             <constraint firstItem="Zhr-Sa-BP7" firstAttribute="top" secondItem="kRK-de-w07" secondAttribute="bottom" constant="217" id="LOP-0K-Evv"/>
                             <constraint firstItem="vKE-lV-jhc" firstAttribute="leading" secondItem="YSi-4S-Rq2" secondAttribute="leadingMargin" constant="132" id="Nng-9z-Tpm"/>
                             <constraint firstItem="h65-SF-5xh" firstAttribute="top" secondItem="T8V-I2-iVZ" secondAttribute="bottom" constant="-160" id="OH9-rL-klL"/>
-                            <constraint firstItem="iq8-WJ-eUe" firstAttribute="trailing" secondItem="YSi-4S-Rq2" secondAttribute="trailingMargin" id="Pxz-f2-KyG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Zhr-Sa-BP7" secondAttribute="trailing" constant="142" id="RYG-M9-s9d"/>
                             <constraint firstItem="h65-SF-5xh" firstAttribute="top" secondItem="07g-ON-ovl" secondAttribute="bottom" constant="-104" id="RnO-pC-2Va"/>
                             <constraint firstItem="Ql3-jC-teJ" firstAttribute="leading" secondItem="YSi-4S-Rq2" secondAttribute="leadingMargin" constant="64" id="Sbq-05-x4f"/>
+                            <constraint firstItem="nMw-XM-WAE" firstAttribute="top" secondItem="tmz-PV-7KH" secondAttribute="bottom" constant="240" id="U24-wn-Cnz"/>
                             <constraint firstItem="h65-SF-5xh" firstAttribute="leading" secondItem="YSi-4S-Rq2" secondAttribute="leading" id="VvJ-q3-ReL"/>
                             <constraint firstItem="tmz-PV-7KH" firstAttribute="leading" secondItem="kRK-de-w07" secondAttribute="trailing" constant="32" id="Y2I-Kj-DNZ"/>
                             <constraint firstItem="6ue-tx-bUP" firstAttribute="leading" secondItem="YSi-4S-Rq2" secondAttribute="leading" constant="172" id="a5K-Cq-VuI"/>
@@ -174,12 +166,11 @@
                             <constraint firstItem="6ue-tx-bUP" firstAttribute="centerX" secondItem="YSi-4S-Rq2" secondAttribute="centerX" id="hg5-IU-Aas"/>
                             <constraint firstItem="tmz-PV-7KH" firstAttribute="top" secondItem="6ue-tx-bUP" secondAttribute="bottom" constant="56" id="hsr-hq-PId"/>
                             <constraint firstItem="kRK-de-w07" firstAttribute="top" secondItem="YSi-4S-Rq2" secondAttribute="top" constant="182" id="iO7-ej-lCb"/>
-                            <constraint firstItem="iq8-WJ-eUe" firstAttribute="leading" secondItem="Zhr-Sa-BP7" secondAttribute="trailing" constant="30" id="l9l-0h-SEI"/>
                             <constraint firstItem="vKE-lV-jhc" firstAttribute="top" secondItem="07g-ON-ovl" secondAttribute="bottom" constant="28" id="mON-Ix-Jdj"/>
+                            <constraint firstItem="nMw-XM-WAE" firstAttribute="trailing" secondItem="YSi-4S-Rq2" secondAttribute="trailingMargin" id="mV6-oH-7yq"/>
                             <constraint firstItem="zo3-v8-TLJ" firstAttribute="top" secondItem="h65-SF-5xh" secondAttribute="bottom" id="mhT-NZ-u2N"/>
                             <constraint firstItem="kRK-de-w07" firstAttribute="top" secondItem="tmz-PV-7KH" secondAttribute="top" constant="-14" id="ntW-xT-Vf4"/>
                             <constraint firstAttribute="trailing" secondItem="h65-SF-5xh" secondAttribute="trailing" id="p7Y-BZ-UZR"/>
-                            <constraint firstItem="sdX-DP-FLp" firstAttribute="top" secondItem="iq8-WJ-eUe" secondAttribute="bottom" constant="5" id="qDa-jM-xxZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="07g-ON-ovl" secondAttribute="trailing" constant="39" id="uBQ-7W-f7i"/>
                             <constraint firstItem="h65-SF-5xh" firstAttribute="leading" secondItem="T8V-I2-iVZ" secondAttribute="trailing" constant="-107" id="vHu-rg-nkZ"/>
                             <constraint firstItem="sdX-DP-FLp" firstAttribute="leading" secondItem="YSi-4S-Rq2" secondAttribute="leading" constant="-2" id="wgN-Mw-bat"/>
@@ -198,7 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jdc-oZ-1Es" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1410.4000000000001" y="35.532233883058474"/>
+            <point key="canvasLocation" x="1527" y="-430"/>
         </scene>
         <!--Search Location-->
         <scene sceneID="Cc9-2p-hXd">
@@ -214,7 +205,12 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search Location" id="6rR-lo-92B">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="search" id="dGS-5K-xOq">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="done" id="B9b-qb-dEO">
+                            <connections>
+                                <segue destination="aP0-gV-qgr" kind="unwind" identifier="goBack" unwindAction="unwindToVC1WithSegue:" id="jxT-f1-Ywl"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="dGS-5K-xOq">
                             <connections>
                                 <action selector="openSearchAddress:" destination="D5x-Vm-BwY" id="H1g-sh-Be7"/>
                             </connections>
@@ -222,40 +218,9 @@
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mh4-QG-4qB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="aP0-gV-qgr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3100" y="-430"/>
-        </scene>
-        <!--Search Results Controller-->
-        <scene sceneID="Sgk-wh-BHe">
-            <objects>
-                <tableViewController id="VZn-gf-urg" customClass="SearchResultsController" customModule="MySunnies" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gqN-yJ-lSi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" id="9LB-fB-uy2">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9LB-fB-uy2" id="Gc0-JM-Y09">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="2LW-SK-TM0" kind="show" identifier="showRegion" id="ozu-Pc-jgn"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="VZn-gf-urg" id="AVb-3D-tGN"/>
-                            <outlet property="delegate" destination="VZn-gf-urg" id="fmc-8j-Ev5"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="7CR-n3-i5C"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nw8-pA-KvE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3100" y="375"/>
         </scene>
         <!--Region List Controller-->
         <scene sceneID="LFm-Gc-K1p">
@@ -326,29 +291,11 @@
             <point key="canvasLocation" x="3100" y="1143"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="woS-fh-i2m">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OiQ-lu-Egd" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lbA-ba-Q74">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="VZn-gf-urg" kind="relationship" relationship="rootViewController" id="CVa-0g-4tl"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eFc-kh-Jc4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2252" y="375"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="3bt-iu-gWo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eu7-9m-Lte" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FWl-kq-On4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="FWl-kq-On4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
