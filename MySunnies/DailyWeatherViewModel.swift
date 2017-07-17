@@ -1,64 +1,31 @@
 //
-//  HourlyWeatherViewModel.swift
+//  DailyWeatherViewModel.swift
 //  MySunnies
 //
-//  Created by Justin Ji on 02/07/2017.
+//  Created by Justin Ji on 14/07/2017.
 //  Copyright © 2017 Justin Ji. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-struct HourlyWeatherViewModel {
+struct DailyWeatherViewModel {
 	let icon: [UIImage]
-	let time: [Double]
-	let temperature: [Double]
+	let temperatureMin: [Double]
+	let temperatureMax: [Double]
 	
-	init(model: HourlyWeather) {
-		
+	init(model: DailyWeather) {
 		var weatherIconImage = [UIImage]()
 		var weatherImage: WeatherIcon
+		
 		for imageString in model.icon {
 			weatherImage = WeatherIcon(iconString: imageString)
 			weatherIconImage.append(weatherImage.image)
 		}
 		
 		self.icon = weatherIconImage
-		self.time = model.time
-		self.temperature = model.temperature
+		self.temperatureMax = model.temperatureMax
+		self.temperatureMin = model.temperatureMin
 	}
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

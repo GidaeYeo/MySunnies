@@ -12,9 +12,7 @@ import GoogleMaps
 
 class LocationViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
-	// OUTLETS
 	
-	// VARIABLES
 	var coordinates: CLLocationCoordinate2D?
 	var cityName: String?
 	
@@ -24,9 +22,9 @@ class LocationViewController: UIViewController, GMSAutocompleteViewControllerDel
 	
 	
 	// MARK: GOOGLE AUTO COMPLETE DELEGATE
-	
 	func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
 		print("Selected Location: \(place.name), \(place.coordinate)")
+		
 		coordinates = place.coordinate
 		cityName = place.name
 		func prepare(for segue: UIStoryboardSegue, sender: Any?) { }
@@ -35,9 +33,7 @@ class LocationViewController: UIViewController, GMSAutocompleteViewControllerDel
 	}
 	
 	func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-		
 		print("ERROR AUTO COMPLETE \(error)")
-		
 	}
 	
 	func wasCancelled(_ viewController: GMSAutocompleteViewController) {
